@@ -65,6 +65,8 @@
         "mpv",
         "mpd",
         "calibre",
+        "zip",
+        "unzip",
       ]
     state: present
 
@@ -97,5 +99,4 @@
 - name: Extract Yay
   ansible.builtin.unarchive:
     src: /opt/yay.tar.gz
-    dest: /usr/local/bin/
-    include: yay
+    dest: /opt
