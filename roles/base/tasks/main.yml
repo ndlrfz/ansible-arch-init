@@ -22,7 +22,7 @@
   ansible.builtin.lineinfile:
     path: /etc/pacman.d/mirrorlist
     regexp: '#(\s+)Server'
-    replace: "Server"
+    line: "Server"
     backup: yes
 
 - name: Run pacman -Syu
