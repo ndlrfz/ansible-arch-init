@@ -90,11 +90,16 @@
     state: present
     line: "faza96 ALL=(ALL:ALL) ALL"
 
+- name: Download Yay bin
+  ansible.builtin.get_url:
+    url: https://github.com/Jguer/yay/releases/download/v12.4.2/yay_12.4.2_x86_64.tar.gz
+    dest: /opt/yay.tar.gz
+    mode: "0644"
+
 - name: Extract Yay
   ansible.builtin.unarchive:
     src: https://github.com/Jguer/yay/releases/download/v12.4.2/yay_12.4.2_x86_64.tar.gz
     dest: /opt
-    remote: yes
 
 - name: Install Yay
   ansible.builtin.command:
