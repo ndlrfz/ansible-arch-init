@@ -98,7 +98,7 @@
 
 - name: Extract Yay
   ansible.builtin.unarchive:
-    src: https://github.com/Jguer/yay/releases/download/v12.4.2/yay_12.4.2_x86_64.tar.gz
+    src: /opt/yay.tar.gz
     dest: /opt
 
 - name: Install Yay
