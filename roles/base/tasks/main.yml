@@ -67,6 +67,8 @@
         "calibre",
         "zip",
         "unzip",
+        "lazygit",
+        "man",
       ]
     state: present
 
@@ -102,5 +104,7 @@
     dest: /opt
 
 - name: Install Yay
-  ansible.builtin.command:
-    cmd: install -Dm755 "/opt/yay_12.4.2_x86_64/yay" "/usr/bin/yay"
+  ansible.builtin.shell: |
+    install -Dm755 "/opt/yay_12.4.2_x86_64/yay" "/usr/bin/yay"
+    install -Dm644 "/opt/yay_12.4.2_x86_64/yay.8" "/usr/share/man/man8/yay.8"
+    install -Dm644 "/opt/yay_12.4.2_x86_64/zsh" "/usr/share/zsh/site-functions/_yay"
