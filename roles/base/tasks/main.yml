@@ -21,8 +21,8 @@
 - name: Enable repo for ID
   ansible.builtin.replace:
     path: /etc/pacman.d/mirrorlist
-    regexp: '(\s+)#Server(\s+.*)?$'
-    replace: "Server"
+    regexp: '(\s+)#(\s+.*)?$'
+    replace: ""
     backup: yes
 
 - name: Run pacman -Syu
