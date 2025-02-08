@@ -68,6 +68,11 @@
       ]
     state: present
 
+- name: Add group
+  ansible.builtin.group:
+    name: faza96
+    state: present
+
 - name: Create a new user for Workstation
   ansible.builtin.user:
     name: faza96
