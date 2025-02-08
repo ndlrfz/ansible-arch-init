@@ -97,5 +97,5 @@
 - name: Compile yay
   ansible.builtin.command:
     chdir: /usr/src/yay
-    cmd: "makepkg -sfi --noconfirm"
+    cmd: "su - faza96 -c 'makepkg -sfi --noconfirm'"
     creates: /usr/bin/yay
