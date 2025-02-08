@@ -1,0 +1,102 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for base
+# create user
+# setup sudo with wheel group
+# add user to wheel
+# replace repository
+# update repo
+# install packages
+#   xorg
+#   driver
+#   ly dm
+#
+
+- name: Download mirrorlist for Arch
+  ansible.builtin.get_url:
+    url: "https://archlinux.org/mirrorlist/?country=ID"
+    backup: true
+    dest: /etc/pacman.d/mirrorlist
+
+- name: Enable repo for ID
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.d/mirrorlist
+    regexp: '#(\s+)Server'
+    replace: "Server"
+    backup: yes
+
+- name: Run pacman -Syu
+  community.general.pacman:
+    update_cache: true
+    upgrade: false
+
+- name: Installing base packages
+  community.general.pacman:
+    name:
+      [
+        "xorg-server",
+        "xf86-video-intel",
+        "mesa",
+        "vulkan-intel",
+        "ttf-ibm-plex",
+        "ttf-jetbrains-mono-nerd",
+        "ttc-iosevka-ss14",
+        "xterm",
+        "ly",
+        "xorg-xauth",
+        "xdg-user-dirs",
+        "networkmanager",
+        "openvpn",
+        "networkmanager-openvpn",
+        "wezterm",
+        "zsh",
+        "htop",
+        "ripgrep",
+        "neovim",
+        "fzf",
+        "git",
+        "bleachbit",
+        "zoxide",
+        "zathura",
+        "zathura-pdf-mupdf",
+        "zathura-cb",
+        "tmux",
+        "octopi",
+        "pipewire",
+        "pipewire-alsa",
+        "pipewire-audio",
+        "pipewire-jack",
+        "pipewire-pulse",
+        "ntfs-3g",
+        "mpv",
+        "mpd",
+        "calibre",
+      ]
+    state: present
+
+- name: Create a new user for Workstation
+  ansible.builtin.user:
+    name: faza96
+    group: faza96
+    create_home: yes
+    shell: /bin/zsh
+    groups: wheel
+
+- name: Set up sudo for new user
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/99-faza96
+    create: true
+    state: present
+    line: "faza96 ALL=(ALL:ALL) ALL"
+
+- name: Clone yay
+  ansible.builtin.git:
+    repo: https://github.com/Jguer/yay
+    dest: /usr/src/yay
+    update: true
+
+- name: Compile yay
+  ansible.builtin.command:
+    chdir: /usr/src/yay
+    cmd: "makepkg -sfi --noconfirm"
+    creates: /usr/bin/yay
