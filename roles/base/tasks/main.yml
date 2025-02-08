@@ -19,7 +19,7 @@
     dest: /etc/pacman.d/mirrorlist
 
 - name: Enable repo for ID
-  ansible.builtin.lineinfile:
+  ansible.builtin.replace:
     path: /etc/pacman.d/mirrorlist
     regexp: '#(\s+)Server'
     line: "Server"
