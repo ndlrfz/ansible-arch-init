@@ -11,6 +11,8 @@
 #   driver
 #   ly dm
 #   firefox speech-dispatcher hunspell-en_US
+#   kvm: qemu-full and UEFI
+#   betterlockscreen xidle curtail-git i3-scrot
 
 - name: Set up repository mirror to ID
   ansible.builtin.copy:
@@ -30,6 +32,7 @@
     name:
       [
         "xorg-server",
+        "base-devel",
         "xf86-video-intel",
         "mesa",
         "vulkan-intel",
@@ -71,6 +74,24 @@
         "lazygit",
         "man",
         "pavucontrol",
+        "arandr",
+        "nm-connection-editor",
+        "network-manager-applet",
+        "ufw",
+        "ufw-extras",
+        "gufw",
+        "redshift",
+        "7zip",
+        "autotiling",
+        "chezmoi",
+        "eza",
+        "yt-dlp",
+        "qbittorrent",
+        "kvantum",
+        "kvantum-qt5",
+        "qt5ct",
+        "unrar",
+        "libreoffice-fresh",
       ]
     state: present
 
@@ -93,7 +114,7 @@
     path: /etc/sudoers.d/99-faza96
     create: true
     state: present
-    line: "faza96 ALL=(ALL:ALL) ALL"
+    line: "faza96 ALL=(ALL:ALL) NOPASSWD: ALL"
 
 - name: Download Yay bin
   ansible.builtin.get_url:
@@ -116,3 +137,7 @@
   community.general.pacman:
     name: ["mate", "mate-extra", "mate-media"]
     state: present
+
+- name: Start and enable UFW
+  ansible.builtin.shell: |
+    ufw enable
