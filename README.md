@@ -4,11 +4,11 @@ This roles used to configure my Arch Linux workstation.
 
 ## Roadmap
 
-[x] Install base packages (that I need)
-[x] Install MATE Desktop
-[ ] Install i3
-[ ] Install KVM Libvirt with Vagrant
-[ ] Deploy my dotfiles
+- [x] Install base packages (that I need)
+- [x] Install MATE Desktop
+- [ ] Install i3
+- [ ] Install KVM Libvirt with Vagrant
+- [ ] Deploy my dotfiles
 
 ## TODO
 
