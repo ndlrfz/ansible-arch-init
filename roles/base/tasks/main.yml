@@ -184,5 +184,12 @@
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/99-faza96
     regexp: "^(.*)faza96(.*)$"
-    replace: "faza96 ALL=(ALL:ALL) ALL"
+    line: "faza96 ALL=(ALL:ALL) ALL"
     backrefs: yes
+
+- name: Remove cache packages
+  ansible.builtin.shell: |
+    paccache -ruk0
+    pacman -Sc
+    pacrmorphans --noconfirm
+    rm -rf /home/faza96/.cache/yay/*
