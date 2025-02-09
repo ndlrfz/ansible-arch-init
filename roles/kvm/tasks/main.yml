@@ -1,0 +1,49 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for kvm
+# activate KVM and Nested KVM module
+# install qemu and klibvirt
+
+- name: Activate KVM module
+  ansible.builtin.shell: |
+    modprobe -r kvm_intel
+    modprobe kvm_intel nested=1
+
+- name: Install KVM/Qemu and Libvirt
+  community.general.pacman:
+    name:
+      [
+        "qemu-full",
+        "virt-manager",
+        "libvirt",
+        "virt-viewer",
+        "dnsmasq",
+        "vde2",
+        "bridge-utils",
+        "openbsd-netcat",
+        "ebtables",
+        "libguestfs",
+        "edk2-ovmf",
+      ]
+    state: present
+
+- name: Set up unix socket group to libvirt
+  ansible.builtin.lineinfile:
+    path: /etc/libvirt/libvirtd.conf
+    regexp: "^(.*)unix_sock_group(.*)$"
+    line: 'unix_sock_group = "libvirt"'
+    backrefs: yes
+
+- name: Set up unix socket permission
+  ansible.builtin.lineinfile:
+    path: /etc/libvirt/libvirtd.conf
+    regexp: "^(.*)unix_sock_rw_perms(.*)$"
+    line: 'unix_sock_rw_perms = "0770"'
+    backrefs: yes
+
+- name: Add user to libvirt group
+  ansible.builtin.user:
+    name: "{{ new_user }}"
+    groups: "libvirt"
+  notify:
+    - Start and enable Libvirt

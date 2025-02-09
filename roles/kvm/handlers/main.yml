@@ -1,0 +1,8 @@
+#SPDX-License-Identifier: MIT-0
+---
+# handlers file for kvm
+- name: Start and enable Libvirt
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: libvirtd
+    enabled: true
