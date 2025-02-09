@@ -69,6 +69,7 @@
         "unzip",
         "lazygit",
         "man",
+        "chezmoi",
       ]
     state: present
 
@@ -83,7 +84,7 @@
     group: faza96
     create_home: yes
     shell: /bin/zsh
-    groups: wheel
+    groups: wheel, video, audio, input, power
 
 - name: Set up sudo for new user
   ansible.builtin.lineinfile:

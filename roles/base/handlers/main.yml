@@ -1,3 +1,15 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # handlers file for base
+
+- name: Start and enable ly
+  ansible.builtin.systemd_service:
+    state: started
+    name: ly
+    enabled: true
+
+- name: Start and enable NetworkManager
+  ansible.builtin.systemd_service:
+    state: started
+    name: NetworkManager
+    enabled: true
