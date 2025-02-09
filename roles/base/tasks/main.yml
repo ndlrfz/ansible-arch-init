@@ -75,6 +75,7 @@
         "lazygit",
         "man",
         "pavucontrol",
+        "lxappearance",
         "arandr",
         "nm-connection-editor",
         "network-manager-applet",
@@ -93,6 +94,7 @@
         "qt5ct",
         "unrar",
         "libreoffice-fresh",
+        "breeze-icons",
       ]
     state: present
 
@@ -139,6 +141,25 @@
     name: ["mate", "mate-extra", "mate-media"]
     state: present
 
+- name: Install i3
+  community.general.pacman:
+    name:
+      [
+        "i3-wm",
+        "polybar",
+        "dunst",
+        "xsettingsd",
+        "udiskie",
+        "xarchiver",
+        "xorg-input",
+        "gvfs",
+        "gvfs-mtp",
+        "gvfs-gphoto2",
+        "dmenu",
+        "rofi",
+      ]
+# pacman -S i3-gaps feh playerctl brightnessctl dunst picom udiskie network-manager-applet pcmanfm file-roller xarchiver alacritty unclutter xorg-xinput polkit-gnome gvfs gvfs-mtp gvfs-gphoto2 gnome-keyring mousepad gammastepi dmenu rofi xdg-user-dirs lxappearance xsettingsd xss-lock i3lock
+
 - name: Test install with Yay
   ansible.builtin.shell: |
-    su - faza96 -c "yay -S --noconfirm xidlehook"
+    su - faza96 -c "yay -S --noconfirm fastcompmgr-git betterlockscreen ymuse octopi"
