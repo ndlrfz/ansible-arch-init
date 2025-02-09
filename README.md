@@ -35,6 +35,12 @@ cd ansible-arch-init
 ansible-playbook -i hosts site.yml
 ```
 
+Now change the password for your user.
+
+```bash
+passwd username
+```
+
 ## Roadmap
 
 - [x] Install base packages (that I need)
@@ -42,7 +48,8 @@ ansible-playbook -i hosts site.yml
 - [x] Install i3
 - [ ] Install KVM Libvirt with Vagrant
 - [x] Deploy my dotfiles
-- [ ] Implement alias
+- [x] Implement Vars
+- [ ] Implement password encrypt
 
 ## TODO
 
@@ -52,3 +59,4 @@ ansible-playbook -i hosts site.yml
   - KVM: qemu-full and UEFI support
   - ~~Browser: brave-bin firefox speech-dispatcher hunspell-en_US~~
   - ~~Yay: betterlockscreen xidlehook curtail-git i3-scrot ymuse-bin~~
+- Setup password for user
