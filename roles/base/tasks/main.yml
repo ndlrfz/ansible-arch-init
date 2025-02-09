@@ -112,16 +112,16 @@
 
 - name: Add group
   ansible.builtin.group:
-    name: { { new_user } }
+    name: "{{ new_user }}"
     state: present
 
 - name: Create a new user for Workstation
   ansible.builtin.user:
-    name: { { new_user } }
-    group: { { new_user } }
+    name: "{{ new_user }}"
+    group: "{{ new_user }}"
     create_home: yes
     shell: /bin/zsh
-    uid: { { uid } }
+    uid: "{{ uid }}"
     groups: wheel, video, audio, input, power
 
 - name: Set up sudo for new user
