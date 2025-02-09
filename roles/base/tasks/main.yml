@@ -111,6 +111,9 @@
         "npm",
         "ruby",
         "audacious",
+        "virtualbox",
+        "virtualbox-guest-iso",
+        "virtualbox-host-modules-arch",
       ]
     state: present
 
@@ -126,7 +129,7 @@
     create_home: yes
     shell: /bin/zsh
     uid: "{{ uid }}"
-    groups: wheel, video, audio, input, power
+    groups: wheel, video, audio, input, power, vboxusers
 
 - name: Set up sudo for new user
   ansible.builtin.lineinfile:
@@ -180,7 +183,8 @@
 
 - name: Install from AUR with Yay
   ansible.builtin.shell: |
-    su - {{ new_user }} -c "yay -S --noconfirm brave-bin librewolf-bin fastcompmgr-git betterlockscreen ymuse octopi caffeine-ng curtail-git vscodium-bin"
+    modprobe vboxdrv
+    su - {{ new_user }} -c "yay -S --noconfirm brave-bin librewolf-bin fastcompmgr-git betterlockscreen ymuse octopi caffeine-ng curtail-git vscodium-bin virtualbox-ext-oracle"
 
 - name: Setting up dotfiles
   ansible.builtin.shell: |

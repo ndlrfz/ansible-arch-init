@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for virtualbox
+#
+- name: Install VirtualBox
+  comunity.general.pacman:
+    name: ["virtualbox", "virtualbox-guest-iso", "virtualbox-host-modules-arch"]
+
+- name: Enable vboxdrv and install VirtualBox Extension Pack
+  ansible.builtin.shell: |
+    modprobe vboxdrv
+    su - {{ new_user }} -c "yay "
