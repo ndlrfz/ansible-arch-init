@@ -110,6 +110,7 @@
         "nodejs",
         "npm",
         "ruby",
+        "audacious",
       ]
     state: present
 
