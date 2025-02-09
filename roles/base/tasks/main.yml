@@ -180,6 +180,21 @@
   ansible.builtin.shell: |
     su - faza96 -c "chezmoi init --apply https://github.com/ndlrfz/dotfiles.git"
 
+- name: Downlad Mint-Yz themes
+  ansible.builtin.get_url:
+    url: https://github.com/SebastJava/mint-yz-theme/releases/download/v4.1/mint-yz-theme_4.1.zip
+    dest: /opt/mint-yz.zip
+    mode: "0644"
+
+- name: Extract Mint-Yz themes
+  ansible.builtin.unarchive:
+    src: /opt/mint-yz.zip
+    dest: /opt/mint-yz
+
+- name: Install Mint-Yz themes
+  ansible.builtin.shell: |
+    cp -rf /opt/mint-yz/themes/* /usr/share/themes
+
 - name: Revert user NOPASSWD sudoers
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/99-faza96
