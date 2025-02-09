@@ -107,6 +107,9 @@
         "gimp",
         "keepassxc",
         "newsboat",
+        "nodejs",
+        "npm",
+        "ruby",
       ]
     state: present
 
