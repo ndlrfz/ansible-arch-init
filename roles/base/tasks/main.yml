@@ -112,24 +112,24 @@
 
 - name: Add group
   ansible.builtin.group:
-    name: faza96
+    name: { { new_user } }
     state: present
 
 - name: Create a new user for Workstation
   ansible.builtin.user:
-    name: faza96
-    group: faza96
+    name: { { new_user } }
+    group: { { new_user } }
     create_home: yes
     shell: /bin/zsh
-    uid: 1050
+    uid: { { uid } }
     groups: wheel, video, audio, input, power
 
 - name: Set up sudo for new user
   ansible.builtin.lineinfile:
-    path: /etc/sudoers.d/99-faza96
+    path: /etc/sudoers.d/99-{{ new_user }}
     create: true
     state: present
-    line: "faza96 ALL=(ALL:ALL) NOPASSWD: ALL"
+    line: "{{ new_user }} ALL=(ALL:ALL) NOPASSWD: ALL"
 
 - name: Download Yay bin
   ansible.builtin.get_url:
@@ -176,11 +176,11 @@
 
 - name: Install from AUR with Yay
   ansible.builtin.shell: |
-    su - faza96 -c "yay -S --noconfirm brave-bin librewolf-bin fastcompmgr-git betterlockscreen ymuse octopi caffeine-ng curtail-git vscodium-bin"
+    su - {{ new_user }} -c "yay -S --noconfirm brave-bin librewolf-bin fastcompmgr-git betterlockscreen ymuse octopi caffeine-ng curtail-git vscodium-bin"
 
 - name: Setting up dotfiles
   ansible.builtin.shell: |
-    su - faza96 -c "chezmoi init --apply https://github.com/ndlrfz/dotfiles.git"
+    su - {{ new_user }} -c "chezmoi init --apply https://github.com/ndlrfz/dotfiles.git"
     mkdir -p /opt/temp
 
 - name: Downlad Mint-Yz themes
@@ -217,13 +217,13 @@
   ansible.builtin.shell: |
     cp -rf /opt/temp/themes/* /usr/share/themes
     cp -rf /opt/temp/Palette-* /usr/share/icons
-    su - faza96 -c "fc-cache -f"
+    su - {{ new_user }} -c "fc-cache -f"
 
 - name: Revert user NOPASSWD sudoers
   ansible.builtin.lineinfile:
-    path: /etc/sudoers.d/99-faza96
-    regexp: "^(.*)faza96(.*)$"
-    line: "faza96 ALL=(ALL:ALL) ALL"
+    path: /etc/sudoers.d/99-{{ new_user }}
+    regexp: "^(.*){{ new_user }}(.*)$"
+    line: "{{ new_user }} ALL=(ALL:ALL) ALL"
     backrefs: yes
 
 - name: Remove cache packages
@@ -231,4 +231,4 @@
     paccache -ruk0
     pacman -Sc --noconfirm
     pacrmorphans --noconfirm
-    rm -rf /home/faza96/.cache/yay/*
+    rm -rf /home/{{ new_user }}/.cache/yay/*
