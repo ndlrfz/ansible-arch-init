@@ -79,9 +79,7 @@
         "arandr",
         "nm-connection-editor",
         "network-manager-applet",
-        "ufw",
-        "ufw-extras",
-        "gufw",
+        "firewalld",
         "redshift",
         "7zip",
         "autotiling",
@@ -95,6 +93,17 @@
         "unrar",
         "libreoffice-fresh",
         "breeze-icons",
+        "hugo",
+        "keychain",
+        "age",
+        "lua",
+        "luajit",
+        "luarocks",
+        "firefox",
+        "chromium",
+        "gnupg",
+        "gimp",
+        "keepassxc",
       ]
     state: present
 
@@ -157,9 +166,21 @@
         "gvfs-gphoto2",
         "dmenu",
         "rofi",
+        "nitrogen",
       ]
 # pacman -S i3-gaps feh playerctl brightnessctl dunst picom udiskie network-manager-applet pcmanfm file-roller xarchiver alacritty unclutter xorg-xinput polkit-gnome gvfs gvfs-mtp gvfs-gphoto2 gnome-keyring mousepad gammastepi dmenu rofi xdg-user-dirs lxappearance xsettingsd xss-lock i3lock
 
-- name: Test install with Yay
+- name: Install from AUR with Yay
   ansible.builtin.shell: |
-    su - faza96 -c "yay -S --noconfirm fastcompmgr-git betterlockscreen ymuse octopi"
+    su - faza96 -c "yay -S --noconfirm brave-bin librewolf-bin fastcompmgr-git betterlockscreen ymuse octopi caffeine-ng curtail-git vscodium-bin"
+
+- name: Setting up dotfiles
+  ansible.builtin.shell: |
+    su - faza96 -c "chezmoi init --apply https://github.com/ndlrfz/dotfiles.git"
+
+- name: Revert user NOPASSWD sudoers
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/99-faza96
+    create: true
+    state: present
+    line: "faza96 ALL=(ALL:ALL) ALL"

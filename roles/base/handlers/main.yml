@@ -14,10 +14,17 @@
     name: NetworkManager
     enabled: true
 
+- name: Start and enable Firewalld
+  ansible.builtin.systemd_service:
+    state: started
+    name: firewalld
+    enabled: true
+
 - name: Start and enable Pipewire services
   ansible.builtin.systemd_service:
     state: started
-    name: ["pipewire.socket", "pipewire-pulse.socket", "wireplumber.service"]
+    name:
+      ["pipewire.socket", "pipewire-pulse.socket", "wireplumber.service", "mpd"]
     enabled: true
     scope: user
   environment:
