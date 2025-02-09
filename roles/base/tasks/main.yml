@@ -10,7 +10,7 @@
 #   xorg
 #   driver
 #   ly dm
-#
+#   firefox speech-dispatcher hunspell-en_US
 
 - name: Set up repository mirror to ID
   ansible.builtin.copy:
@@ -61,6 +61,7 @@
         "pipewire-audio",
         "pipewire-jack",
         "pipewire-pulse",
+        "wireplumber",
         "ntfs-3g",
         "mpv",
         "mpd",
@@ -69,7 +70,7 @@
         "unzip",
         "lazygit",
         "man",
-        "chezmoi",
+        "pavucotrol",
       ]
     state: present
 
@@ -84,6 +85,7 @@
     group: faza96
     create_home: yes
     shell: /bin/zsh
+    uid: 1050
     groups: wheel, video, audio, input, power
 
 - name: Set up sudo for new user
@@ -109,3 +111,8 @@
     install -Dm755 "/opt/yay_12.4.2_x86_64/yay" "/usr/bin/yay"
     install -Dm644 "/opt/yay_12.4.2_x86_64/yay.8" "/usr/share/man/man8/yay.8"
     install -Dm644 "/opt/yay_12.4.2_x86_64/zsh" "/usr/share/zsh/site-functions/_yay"
+
+- name: Install MATE Desktop
+  community.general.pacman:
+    name: ["mate", "mate-extra", "mate-media"]
+    state: present
