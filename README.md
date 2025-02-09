@@ -7,7 +7,7 @@ This roles used to configure my Arch Linux workstation.
 Install `ansible`, `openssh`, and `git`.
 
 ```bash
-sudo pacman -S openssh ansible
+sudo pacman -S openssh ansible git
 ```
 
 Start SSH.
@@ -46,9 +46,9 @@ ansible-playbook -i hosts site.yml
 
 ## TODO
 
-- Clean package cache
-- Revert sudoers
+- ~~Clean package cache~~
+- ~~Revert sudoers~~
 - Additional packages:
   - KVM: qemu-full and UEFI support
-  - Browser: brave-bin firefox speech-dispatcher hunspell-en_US
-  - Yay: betterlockscreen xidlehook curtail-git i3-scrot ymuse-bin
+  - ~~Browser: brave-bin firefox speech-dispatcher hunspell-en_US~~
+  - ~~Yay: betterlockscreen xidlehook curtail-git i3-scrot ymuse-bin~~
