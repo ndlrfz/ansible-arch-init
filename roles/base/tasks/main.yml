@@ -40,6 +40,7 @@
         "ttf-ibm-plex",
         "ttf-jetbrains-mono-nerd",
         "ttc-iosevka-ss14",
+        "otf-geist-mono-nerd",
         "xterm",
         "ly",
         "xorg-xauth",
@@ -76,6 +77,7 @@
         "man",
         "pavucontrol",
         "lxappearance",
+        "nwg-look",
         "arandr",
         "nm-connection-editor",
         "network-manager-applet",
@@ -203,10 +205,19 @@
     src: /opt/temp/palette.tar.gz
     dest: /opt/temp
 
-- name: Install Mint-Yz themes
+- name: Copy VAGUARD BASIC Font
+  ansible.builtin.copy:
+    src: VAGUARD-BASIC.ttf
+    dest: /usr/share/fonts/TTF
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Install icon, theme, font
   ansible.builtin.shell: |
     cp -rf /opt/temp/themes/* /usr/share/themes
-    cp -rf /opt/temp/Palette-Adwaita/* /usr/share/icons
+    cp -rf /opt/temp/Palette-* /usr/share/icons
+    su - faza96 -c "fc-cache -f"
 
 - name: Revert user NOPASSWD sudoers
   ansible.builtin.lineinfile:
@@ -218,6 +229,6 @@
 - name: Remove cache packages
   ansible.builtin.shell: |
     paccache -ruk0
-    pacman -Sc
+    pacman -Sc --noconfirm
     pacrmorphans --noconfirm
     rm -rf /home/faza96/.cache/yay/*
