@@ -138,10 +138,6 @@
     name: ["mate", "mate-extra", "mate-media"]
     state: present
 
-- name: Start and enable UFW
-  ansible.builtin.shell: |
-    ufw enable
-
 - name: Test install with Yay
   ansible.builtin.shell: |
     su - faza96 -c "yay -S --noconfirm xidlehook"
