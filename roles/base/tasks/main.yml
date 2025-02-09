@@ -151,7 +151,7 @@
         "xsettingsd",
         "udiskie",
         "xarchiver",
-        "xorg-input",
+        "xorg-xinput",
         "gvfs",
         "gvfs-mtp",
         "gvfs-gphoto2",

@@ -9,6 +9,7 @@ This roles used to configure my Arch Linux workstation.
 - [ ] Install i3
 - [ ] Install KVM Libvirt with Vagrant
 - [ ] Deploy my dotfiles
+- [ ] Implement alias
 
 ## TODO
 
