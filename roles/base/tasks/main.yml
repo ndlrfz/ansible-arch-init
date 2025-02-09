@@ -168,6 +168,7 @@
         "dmenu",
         "rofi",
         "nitrogen",
+        "dex",
       ]
 # pacman -S i3-gaps feh playerctl brightnessctl dunst picom udiskie network-manager-applet pcmanfm file-roller xarchiver alacritty unclutter xorg-xinput polkit-gnome gvfs gvfs-mtp gvfs-gphoto2 gnome-keyring mousepad gammastepi dmenu rofi xdg-user-dirs lxappearance xsettingsd xss-lock i3lock
 
@@ -180,7 +181,8 @@
     su - faza96 -c "chezmoi init --apply https://github.com/ndlrfz/dotfiles.git"
 
 - name: Revert user NOPASSWD sudoers
-  ansible.builtin.replace:
+  ansible.builtin.lineinfile:
     path: /etc/sudoers.d/99-faza96
-    regexp: '(\s+)faza96(\s+.*)?$'
-    replace: '\1faza96 ALL=(ALL:ALL) ALL\2'
+    regexp: "^(.*)faza96(.*)$"
+    replace: "faza96 ALL=(ALL:ALL) ALL"
+    backrefs: yes
