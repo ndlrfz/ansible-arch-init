@@ -179,21 +179,34 @@
 - name: Setting up dotfiles
   ansible.builtin.shell: |
     su - faza96 -c "chezmoi init --apply https://github.com/ndlrfz/dotfiles.git"
+    mkdir -p /opt/temp
 
 - name: Downlad Mint-Yz themes
   ansible.builtin.get_url:
     url: https://github.com/SebastJava/mint-yz-theme/releases/download/v4.1/mint-yz-theme_4.1.zip
-    dest: /opt/mint-yz.zip
+    dest: /opt/temp/mint-yz.zip
     mode: "0644"
 
 - name: Extract Mint-Yz themes
   ansible.builtin.unarchive:
-    src: /opt/mint-yz.zip
-    dest: /opt/mint-yz
+    src: /opt/temp/mint-yz.zip
+    dest: /opt/temp
+
+- name: Download Palette Icon Theme
+  ansible.builtin.get_url:
+    url: https://github.com/mjkim0727/Palette-icon-theme/releases/download/1.2/Palette-Adwaita.tar.gz
+    dest: /opt/temp/palette.tar.gz
+    mode: "0644"
+
+- name: Extract Palette Icon Theme
+  ansible.builtin.unarchive:
+    src: /opt/temp/palette.tar.gz
+    dest: /opt/temp
 
 - name: Install Mint-Yz themes
   ansible.builtin.shell: |
-    cp -rf /opt/mint-yz/themes/* /usr/share/themes
+    cp -rf /opt/temp/themes/* /usr/share/themes
+    cp -rf /opt/temp/Palette-Adwaita/* /usr/share/icons
 
 - name: Revert user NOPASSWD sudoers
   ansible.builtin.lineinfile:
