@@ -104,6 +104,7 @@
         "gnupg",
         "gimp",
         "keepassxc",
+        "newsboat",
       ]
     state: present
 
@@ -179,8 +180,7 @@
     su - faza96 -c "chezmoi init --apply https://github.com/ndlrfz/dotfiles.git"
 
 - name: Revert user NOPASSWD sudoers
-  ansible.builtin.lineinfile:
+  ansible.builtin.replace:
     path: /etc/sudoers.d/99-faza96
-    create: true
-    state: present
-    line: "faza96 ALL=(ALL:ALL) ALL"
+    regexp: '(\s+)faza96(\s+.*)?$'
+    replace: '\1faza96 ALL=(ALL:ALL) ALL\2'
