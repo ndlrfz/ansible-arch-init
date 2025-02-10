@@ -20,6 +20,7 @@ Generate SSH Key for localhost.
 
 ```bash
 ssh-keygen
+cp ~/.ssh/id_ed25519.pub ~/.ssh/authorized_keys
 ```
 
 Clone repository.
@@ -59,4 +60,9 @@ passwd username
   - ~~KVM: qemu-full and UEFI support~~
   - ~~Browser: brave-bin firefox speech-dispatcher hunspell-en_US~~
   - ~~Yay: betterlockscreen xidlehook curtail-git i3-scrot ymuse-bin~~
+  - Thunar tumbler etc
+  - pfetch via AUR
+  - ttc-iosevka noto-fonts noto-fonts-emoji
+  - Vagrant
+  - simp1e cursor
 - Setup password encrypted for user
