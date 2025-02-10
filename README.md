@@ -50,6 +50,7 @@ passwd username
 - [x] Install KVM Libvirt with Vagrant
 - [x] Deploy my dotfiles
 - [x] Implement Vars
+- [ ] Implement handler correctly
 - [ ] Implement password encrypt
 
 ## TODO
