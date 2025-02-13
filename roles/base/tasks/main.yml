@@ -41,6 +41,9 @@
         "ttf-jetbrains-mono-nerd",
         "ttc-iosevka-ss14",
         "otf-geist-mono-nerd",
+        "ttc-iosevka",
+        "noto-sans",
+        "noto-fonts-emoji"
         "xterm",
         "ly",
         "xorg-xauth",
@@ -114,8 +117,17 @@
         "virtualbox",
         "virtualbox-guest-iso",
         "virtualbox-host-modules-arch",
+        "xclip",
+        "vagrant",
+        "mpv-mpris",
+        "mpd-mpris",
       ]
     state: present
+  notify:
+    - Start ly
+    - Start NetworkManager
+    - Start Firewalld
+    - Start Pipewire
 
 - name: Add group
   ansible.builtin.group:
@@ -178,13 +190,19 @@
         "rofi",
         "nitrogen",
         "dex",
+        "thunar",
+        "thunar-archive-plugin",
+        "thunar-media-tags-plugin",
+        "thunar-vcs-plugin",
+        "thunar-volman",
+        "tumbler",
       ]
 # pacman -S i3-gaps feh playerctl brightnessctl dunst picom udiskie network-manager-applet pcmanfm file-roller xarchiver alacritty unclutter xorg-xinput polkit-gnome gvfs gvfs-mtp gvfs-gphoto2 gnome-keyring mousepad gammastepi dmenu rofi xdg-user-dirs lxappearance xsettingsd xss-lock i3lock
 
 - name: Install from AUR with Yay
   ansible.builtin.shell: |
     modprobe vboxdrv
-    su - {{ new_user }} -c "yay -S --noconfirm brave-bin librewolf-bin fastcompmgr-git betterlockscreen ymuse octopi caffeine-ng curtail-git vscodium-bin virtualbox-ext-oracle"
+    su - {{ new_user }} -c "yay -S --noconfirm brave-bin librewolf-bin fastcompmgr-git betterlockscreen ymuse octopi caffeine-ng curtail-git vscodium-bin virtualbox-ext-oracle i3-scrot pfetch light"
 
 - name: Setting up dotfiles
   ansible.builtin.shell: |

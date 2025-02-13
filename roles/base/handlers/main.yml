@@ -2,25 +2,25 @@
 ---
 # handlers file for base
 
-- name: Start and enable ly
+- name: Start ly
   ansible.builtin.systemd_service:
     state: started
     name: ly
     enabled: true
 
-- name: Start and enable NetworkManager
+- name: Start NetworkManager
   ansible.builtin.systemd_service:
     state: started
     name: NetworkManager
     enabled: true
 
-- name: Start and enable Firewalld
+- name: Start Firewalld
   ansible.builtin.systemd_service:
     state: started
     name: firewalld
     enabled: true
 
-- name: Start and enable Pipewire services
+- name: Start Pipewire
   ansible.builtin.systemd_service:
     state: started
     name:

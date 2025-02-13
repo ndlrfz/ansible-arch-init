@@ -50,7 +50,7 @@ passwd username
 - [x] Install KVM Libvirt with Vagrant
 - [x] Deploy my dotfiles
 - [x] Implement Vars
-- [ ] Implement handler correctly
+- [x] Implement handler correctly
 - [ ] Implement password encrypt
 
 ## TODO
@@ -61,9 +61,11 @@ passwd username
   - ~~KVM: qemu-full and UEFI support~~
   - ~~Browser: brave-bin firefox speech-dispatcher hunspell-en_US~~
   - ~~Yay: betterlockscreen xidlehook curtail-git i3-scrot ymuse-bin~~
-  - Thunar tumbler etc
-  - pfetch via AUR
-  - ttc-iosevka noto-fonts noto-fonts-emoji
-  - Vagrant
+  - ~~Thunar tumbler etc~~
+  - ~~pfetch light via AUR~~
+  - ~~ttc-iosevka noto-fonts noto-fonts-emoji~~
+  - ~~Vagrant~~
   - simp1e cursor
+  - Adding material font for mpv
 - Setup password encrypted for user
+- ~~Additional packages: `xclip`, `i3-scrot` (aur)~~
