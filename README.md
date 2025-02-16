@@ -65,7 +65,12 @@ passwd username
   - ~~pfetch light via AUR~~
   - ~~ttc-iosevka noto-fonts noto-fonts-emoji~~
   - ~~Vagrant~~
-  - simp1e cursor
+  - cursors `simp1e cursor`, `breeze-xcursor`
   - Adding material font for mpv
+  - Add `intel-media-driver`
 - Setup password encrypted for user
 - ~~Additional packages: `xclip`, `i3-scrot` (aur)~~
+
+## NOTE
+
+- `linux-zen` and VirtualBox? Use the `virtualbox-host-dkms` package.
