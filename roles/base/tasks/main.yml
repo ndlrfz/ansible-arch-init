@@ -37,13 +37,14 @@
         "xf86-video-intel",
         "mesa",
         "vulkan-intel",
+        "intel-media-driver",
         "ttf-ibm-plex",
         "ttf-jetbrains-mono-nerd",
         "ttc-iosevka-ss14",
         "otf-geist-mono-nerd",
         "ttc-iosevka",
         "noto-sans",
-        "noto-fonts-emoji"
+        "noto-fonts-emoji",
         "xterm",
         "ly",
         "xorg-xauth",
@@ -138,6 +139,7 @@
   ansible.builtin.user:
     name: "{{ new_user }}"
     group: "{{ new_user }}"
+    password: "$6$fmpfIdJcrKu4xjlF$Fk6p47g9hkWlQdtG.Adgny8qZSkAIdCM.2sRBIoyupm4ILQiWPJrF214qxLWQK05VqsS6cYaltUG19Fkma/lb1"
     create_home: yes
     shell: /bin/zsh
     uid: "{{ uid }}"

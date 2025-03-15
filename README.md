@@ -36,6 +36,8 @@ cd ansible-arch-init
 ansible-playbook -i hosts site.yml
 ```
 
+Default password for user is `ndlrfz`. Password generated via `mkpasswd --method=sha-512`. This command part of the `whois` package.
+
 Now change the password for your user.
 
 ```bash
@@ -51,7 +53,7 @@ passwd username
 - [x] Deploy my dotfiles
 - [x] Implement Vars
 - [x] Implement handler correctly
-- [ ] Implement password encrypt
+- [x] Implement password encrypt
 
 ## TODO
 
@@ -67,8 +69,9 @@ passwd username
   - ~~Vagrant~~
   - cursors `simp1e cursor`, `breeze-xcursor`
   - Adding material font for mpv
-  - Add `intel-media-driver`
-- Setup password encrypted for user
+  - ~Add `intel-media-driver`~
+  - Add grub theme and plymouth
+- ~Setup password encrypted for user~
 - ~~Additional packages: `xclip`, `i3-scrot` (aur)~~
 
 ## NOTE
